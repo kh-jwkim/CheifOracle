@@ -12,24 +12,24 @@ DROP TABLE USER_NO_CONSTRAINT;
 
 SELECT * FROM USER_NO_CONSTRAINT;
 
--- INSERT INTO ${TABLE_NAME}(COLUMN1, COLUMN2, ...) VALUES(FIELD1,FIELD2,...); Àß ¾È¿Ü¿öÁö´Ï ÀÌ°Íµµ ¿¬½À ÇÊ¿ä
--- 1, khuser01, pass01, ÀÏ¿ëÀÚ, ³², 01012345678, khuser01@test.com
+-- INSERT INTO ${TABLE_NAME}(COLUMN1, COLUMN2, ...) VALUES(FIELD1,FIELD2,...); ìž˜ ì•ˆì™¸ì›Œì§€ë‹ˆ ì´ê²ƒë„ ì—°ìŠµ í•„ìš”
+-- 1, khuser01, pass01, ì¼ìš©ìž, ë‚¨, 01012345678, khuser01@test.com
 INSERT INTO USER_NO_CONSTRAINT(USER_NO, USER_ID, USER_PWD, USER_NAME, USER_GENDER, USER_PHONE, USER_EMAIL)
-VALUES(1, 'khuser01', 'pass01', 'ÀÏ¿ëÀÚ', '³²', '01012345678', 'khuser01@test.com');
+VALUES(1, 'khuser01', 'pass01', 'ì¼ìš©ìž', 'ë‚¨', '01012345678', 'khuser01@test.com');
 INSERT INTO USER_NO_CONSTRAINT(USER_NO, USER_ID, USER_PWD, USER_NAME, USER_GENDER, USER_PHONE, USER_EMAIL)
-VALUES(1, 'khuser01', 'pass01', 'ÀÏ¿ëÀÚ', '³²', '01012345678', 'khuser01@test.com');
+VALUES(1, 'khuser01', 'pass01', 'ì¼ìš©ìž', 'ë‚¨', '01012345678', 'khuser01@test.com');
 INSERT INTO USER_NO_CONSTRAINT(USER_NO, USER_ID, USER_PWD, USER_NAME, USER_GENDER, USER_PHONE, USER_EMAIL)
-VALUES(1, 'khuser01', 'pass01', 'ÀÏ¿ëÀÚ', '³²', '01012345678', 'khuser01@test.com');
+VALUES(1, 'khuser01', 'pass01', 'ì¼ìš©ìž', 'ë‚¨', '01012345678', 'khuser01@test.com');
 
 ROLLBACK;
 
 COMMIT;
 
---Á¦¾àÁ¶°Ç ¾ø¾î¼­ ±×´ë·Î ÀÔ·Â °¡´É
+--ì œì•½ì¡°ê±´ ì—†ì–´ì„œ ê·¸ëŒ€ë¡œ ìž…ë ¥ ê°€ëŠ¥
 INSERT INTO USER_NO_CONSTRAINT(USER_NO, USER_ID, USER_PWD, USER_NAME, USER_GENDER, USER_PHONE, USER_EMAIL)
 VALUES(null, null, null, null, null, null, null);
 
---¿©±â¼± Ãâ·ÂÇØµµ ÀüºÎ (null)·Î ³ª¿ÀÁö¸¸ ±×³É null°ú ''´Â ´Ù¸£´Ù!!
+--ì—¬ê¸°ì„  ì¶œë ¥í•´ë„ ì „ë¶€ (null)ë¡œ ë‚˜ì˜¤ì§€ë§Œ ê·¸ëƒ¥ nullê³¼ ''ëŠ” ë‹¤ë¥´ë‹¤!!
 INSERT INTO USER_NO_CONSTRAINT(USER_NO, USER_ID, USER_PWD, USER_NAME, USER_GENDER, USER_PHONE, USER_EMAIL)
 VALUES(null, null, '', null, null, null, null);
 
@@ -43,7 +43,7 @@ VALUES(2, 'khuser02', null, null, null, null, null);
 
 CREATE TABLE USER_NOTNULL (
     USER_NO NUMBER,
-    USER_ID VARCHAR2(20) NOT NULL,      -- ÇÊµå°ª ¼±¾ð ¿À¸¥ÂÊ¿¡ NOT NULL ÀûÀº°ÍÀÌ COLUMN LEVEL ¹æ½Ä
+    USER_ID VARCHAR2(20) NOT NULL,      -- í•„ë“œê°’ ì„ ì–¸ ì˜¤ë¥¸ìª½ì— NOT NULL ì ì€ê²ƒì´ COLUMN LEVEL ë°©ì‹
     USER_PWD VARCHAR2(30) NOT NULL,
     USER_NAME VARCHAR2(30) NOT NULL,
     USER_GENDER VARCHAR2(10),
@@ -53,20 +53,20 @@ CREATE TABLE USER_NOTNULL (
 
 SELECT * FROM USER_NOTNULL;
 
--- NOT NULL ¼Ó¼ºÀÌ ÀÖ´Â ÇÊµå¿¡ NULL·Î °ªÀ» Áà¼­ ROW¸¦ ÀÛ¼ºÇÒ ¶§
+-- NOT NULL ì†ì„±ì´ ìžˆëŠ” í•„ë“œì— NULLë¡œ ê°’ì„ ì¤˜ì„œ ROWë¥¼ ìž‘ì„±í•  ë•Œ
 INSERT INTO USER_NOTNULL(USER_NO, USER_ID, USER_PWD, USER_NAME, USER_GENDER, USER_PHONE, USER_EMAIL)
 VALUES(1, 'khuser01', null, null, null, null, null);
 
--- NOT NULL ÇÊµå¸¦ Ã¤¿öÁáÀ» ¶§
+-- NOT NULL í•„ë“œë¥¼ ì±„ì›Œì¤¬ì„ ë•Œ
 INSERT INTO USER_NOTNULL(USER_NO, USER_ID, USER_PWD, USER_NAME, USER_GENDER, USER_PHONE, USER_EMAIL)
-VALUES(1, 'khuser01', 'pass01', 'ÀÏ¿ëÀÚ', null, null, null);
+VALUES(1, 'khuser01', 'pass01', 'ì¼ìš©ìž', null, null, null);
 
 
 
 
 CREATE TABLE USER_UNIQUE (
     USER_NO NUMBER,
-    USER_ID VARCHAR2(20) UNIQUE,      -- ÇÊµå°ª ¼±¾ð ¿À¸¥ÂÊ¿¡ NOT NULL ÀûÀº°ÍÀÌ COLUMN LEVEL ¹æ½Ä
+    USER_ID VARCHAR2(20) UNIQUE,      -- í•„ë“œê°’ ì„ ì–¸ ì˜¤ë¥¸ìª½ì— NOT NULL ì ì€ê²ƒì´ COLUMN LEVEL ë°©ì‹
     USER_PWD VARCHAR2(30) UNIQUE,
     USER_NAME VARCHAR2(30) UNIQUE,
     USER_GENDER VARCHAR2(10),
@@ -74,14 +74,14 @@ CREATE TABLE USER_UNIQUE (
     USER_EMAIL VARCHAR2(50)
 );
 
---UNIQUE Á¦¾à Á¶°ÇÀ¸·Î Áßº¹Àº ¸·¾ÒÀ¸³ª NULLÀº ¸·Áö ¸øÇÑ »óÅÂ
+--UNIQUE ì œì•½ ì¡°ê±´ìœ¼ë¡œ ì¤‘ë³µì€ ë§‰ì•˜ìœ¼ë‚˜ NULLì€ ë§‰ì§€ ëª»í•œ ìƒíƒœ
 SELECT * FROM USER_UNIQUE;
 
--- °°Àº°ª 2¹ø Áßº¹ ÀÔ·Â ½Ã
+-- ê°™ì€ê°’ 2ë²ˆ ì¤‘ë³µ ìž…ë ¥ ì‹œ
 INSERT INTO USER_UNIQUE
-VALUES(1, 'khuser01', 'pass01', 'ÀÏ¿ëÀÚ', null, null, null);
+VALUES(1, 'khuser01', 'pass01', 'ì¼ìš©ìž', null, null, null);
 INSERT INTO USER_UNIQUE
-VALUES(1, 'khuser01', 'pass01', 'ÀÏ¿ëÀÚ', null, null, null);
+VALUES(1, 'khuser01', 'pass01', 'ì¼ìš©ìž', null, null, null);
 
 
 
@@ -99,18 +99,18 @@ DROP TABLE USER_PRIMARY_KEY;
 
 SELECT * FROM USER_PRIMARY_KEY;
 
--- UNIQUE NOT NULL ¼Ó¼ºÀÇ ÇÊµå°ªÀ¸·Î NULLÀ» ÁáÀ» ¶§
+-- UNIQUE NOT NULL ì†ì„±ì˜ í•„ë“œê°’ìœ¼ë¡œ NULLì„ ì¤¬ì„ ë•Œ
 INSERT INTO USER_PRIMARY_KEY
-VALUES(1, null, 'pass01', 'ÀÏ¿ëÀÚ', null, null, null);
+VALUES(1, null, 'pass01', 'ì¼ìš©ìž', null, null, null);
 
 INSERT INTO USER_PRIMARY_KEY
-VALUES(1, 'khuser01', 'pass01', 'ÀÏ¿ëÀÚ', null, null, null);
+VALUES(1, 'khuser01', 'pass01', 'ì¼ìš©ìž', null, null, null);
 INSERT INTO USER_PRIMARY_KEY
-VALUES(2, 'khuser02', 'pass02', 'ÀÌ¿ëÀÚ', null, null, null);
+VALUES(2, 'khuser02', 'pass02', 'ì´ìš©ìž', null, null, null);
 INSERT INTO USER_PRIMARY_KEY
-VALUES(3, 'khuser01', 'pass03', '»ï¿ëÀÚ', null, null, null);   -- Áßº¹°ªÀÏ¶§ÀÇ ¿¡·¯¸Þ½ÃÁö Ã¼Å©!
+VALUES(3, 'khuser01', 'pass03', 'ì‚¼ìš©ìž', null, null, null);   -- ì¤‘ë³µê°’ì¼ë•Œì˜ ì—ëŸ¬ë©”ì‹œì§€ ì²´í¬!
 INSERT INTO USER_PRIMARY_KEY
-VALUES(3, null, 'pass03', '»ï¿ëÀÚ', null, null, null);         -- NULLÀÏ¶§ÀÇ ¿¡·¯¸Þ½ÃÁö Ã¼Å©!
+VALUES(3, null, 'pass03', 'ì‚¼ìš©ìž', null, null, null);         -- NULLì¼ë•Œì˜ ì—ëŸ¬ë©”ì‹œì§€ ì²´í¬!
 
 
 
@@ -121,7 +121,7 @@ CREATE TABLE USER_CHECK (
     USER_ID VARCHAR2(20) PRIMARY KEY,
     USER_PWD VARCHAR2(30) NOT NULL,
     USER_NAME VARCHAR2(30) NOT NULL,
-    USER_GENDER VARCHAR2(10) CHECK(USER_GENDER IN('M', 'F')),   --CHECK Á¦¾àÁ¶°Ç ¼³Á¤
+    USER_GENDER VARCHAR2(10) CHECK(USER_GENDER IN('M', 'F')),   --CHECK ì œì•½ì¡°ê±´ ì„¤ì •
     USER_PHONE VARCHAR2(30),
     USER_EMAIL VARCHAR2(50)
 );
@@ -129,11 +129,11 @@ CREATE TABLE USER_CHECK (
 DROP TABLE USER_CHECK;
 
 INSERT INTO USER_CHECK
-VALUES(1, 'khuser01', 'pass01', 'ÀÏ¿ëÀÚ', 'M', null, null);
+VALUES(1, 'khuser01', 'pass01', 'ì¼ìš©ìž', 'M', null, null);
 INSERT INTO USER_CHECK
-VALUES(2, 'khuser02', 'pass02', 'ÀÌ¿ëÀÚ', 'm', null, null);    --´ë¼Ò¹®ÀÚµµ ±¸ºÐµÈ´Ù!!
+VALUES(2, 'khuser02', 'pass02', 'ì´ìš©ìž', 'm', null, null);    --ëŒ€ì†Œë¬¸ìžë„ êµ¬ë¶„ëœë‹¤!!
 INSERT INTO USER_CHECK
-VALUES(3, 'khuser03', 'pass03', '»ï¿ëÀÚ', 'Male', null, null);
+VALUES(3, 'khuser03', 'pass03', 'ì‚¼ìš©ìž', 'Male', null, null);
 
 SELECT * FROM USER_CHECK;
 
@@ -150,26 +150,26 @@ CREATE TABLE USER_DEFAULT (
     USER_GENDER VARCHAR2(10) CHECK(USER_GENDER IN('M', 'F')), 
     USER_PHONE VARCHAR2(30),
     USER_EMAIL VARCHAR2(50),
-    USER_DATE DATE DEFAULT SYSDATE  --µ¥ÀÌÅÍ ÀÔ·Â ½Ã DEFAULT¸¦ ÀÔ·ÂÇÏ¸é ¿ìÃøÀÇ SYSDATE °á°ú·Î ÀúÀå
+    USER_DATE DATE DEFAULT SYSDATE  --ë°ì´í„° ìž…ë ¥ ì‹œ DEFAULTë¥¼ ìž…ë ¥í•˜ë©´ ìš°ì¸¡ì˜ SYSDATE ê²°ê³¼ë¡œ ì €ìž¥
 );
 DROP TABLE USER_DEFAULT;
 
 INSERT INTO USER_DEFAULT
-VALUES(1, 'khuser01', 'pass01', 'ÀÏ¿ëÀÚ', 'M', '01012345678', 'khuser01@test.com', '24/06/14');
+VALUES(1, 'khuser01', 'pass01', 'ì¼ìš©ìž', 'M', '01012345678', 'khuser01@test.com', '24/06/14');
 INSERT INTO USER_DEFAULT
-VALUES(2, 'khuser02', 'pass02', 'ÀÌ¿ëÀÚ', 'M', '01012345678', 'khuser02@test.com', SYSDATE+7);
+VALUES(2, 'khuser02', 'pass02', 'ì´ìš©ìž', 'M', '01012345678', 'khuser02@test.com', SYSDATE+7);
 INSERT INTO USER_DEFAULT
-VALUES(3, 'khuser03', 'pass03', '»ï¿ëÀÚ', 'M', '01012345678', 'khuser03@test.com', DEFAULT);
+VALUES(3, 'khuser03', 'pass03', 'ì‚¼ìš©ìž', 'M', '01012345678', 'khuser03@test.com', DEFAULT);
 
 SELECT * FROM USER_DEFAULT;
 
---Á¦¾àÁ¶°Ç
--- 1. NOT NULL : NULLÀÌ µé¾î°¡Áö ¾Ê°ÔÇÔ
--- 2. UNIQUE : Áßº¹ÀÌ µÇÁö ¾Ê°ÔÇÔ
--- 3. PRIMARY KEY : Áßº¹ÀÌ ¾ÈµÇ°í NULLÀÌ µÇÁö ¾Êµµ·Ï ÇÔ
--- 4. CHECK : ÁöÁ¤µÈ °ª¸¸ ÀúÀåµÇµµ·Ï ÇÔ
--- 5. DEFAULT : ÁöÁ¤µÈ ÇÔ¼ö³ª Ç¥Çö½ÄÀ¸·Î ½ÇÇàµÇµµ·Ï ÇÔ
--- 6. FOREIGN KEY(¿Ü·¡Å°) : 
+--ì œì•½ì¡°ê±´
+-- 1. NOT NULL : NULLì´ ë“¤ì–´ê°€ì§€ ì•Šê²Œí•¨
+-- 2. UNIQUE : ì¤‘ë³µì´ ë˜ì§€ ì•Šê²Œí•¨
+-- 3. PRIMARY KEY : ì¤‘ë³µì´ ì•ˆë˜ê³  NULLì´ ë˜ì§€ ì•Šë„ë¡ í•¨
+-- 4. CHECK : ì§€ì •ëœ ê°’ë§Œ ì €ìž¥ë˜ë„ë¡ í•¨
+-- 5. DEFAULT : ì§€ì •ëœ í•¨ìˆ˜ë‚˜ í‘œí˜„ì‹ìœ¼ë¡œ ì‹¤í–‰ë˜ë„ë¡ í•¨
+-- 6. FOREIGN KEY(ì™¸ëž˜í‚¤) : 
 
 
 CREATE TABLE USER_GRADE(
@@ -178,10 +178,10 @@ CREATE TABLE USER_GRADE(
 );
 SELECT * FROM USER_GRADE;
 --DELETE FROM USER_GRADE;
-INSERT INTO USER_GRADE VALUES(10, 'ÀÏ¹ÝÈ¸¿ø');
-INSERT INTO USER_GRADE VALUES(20, '¿ì¼öÈ¸¿ø');
-INSERT INTO USER_GRADE VALUES(30, 'Æ¯º°È¸¿ø');
-INSERT INTO USER_GRADE VALUES(40, 'VIP È¸¿ø');
+INSERT INTO USER_GRADE VALUES(10, 'ì¼ë°˜íšŒì›');
+INSERT INTO USER_GRADE VALUES(20, 'ìš°ìˆ˜íšŒì›');
+INSERT INTO USER_GRADE VALUES(30, 'íŠ¹ë³„íšŒì›');
+INSERT INTO USER_GRADE VALUES(40, 'VIP íšŒì›');
 
 DELETE FROM USER_GRADE WHERE GRADE_CODE = 30;
 
@@ -194,8 +194,8 @@ CREATE TABLE USER_FOREIGN_KEY(
     USER_PHONE VARCHAR2(30),
     USER_EMAIL VARCHAR2(50),
     USER_DATE DATE DEFAULT SYSDATE,
-    --USER_GRADE Å×ÀÌºíÀÇ GRADE_CODE °ªÀ¸·Î¸¸ ÂüÁ¶ÇÏ°Ú´Ù
-    --ON DELETE SET NULL Àº ÂüÁ¶°ª »èÁ¦ ½Ã NULL·Î ¹Ù²Ù°Ú´Ù
+    --USER_GRADE í…Œì´ë¸”ì˜ GRADE_CODE ê°’ìœ¼ë¡œë§Œ ì°¸ì¡°í•˜ê² ë‹¤
+    --ON DELETE SET NULL ì€ ì°¸ì¡°ê°’ ì‚­ì œ ì‹œ NULLë¡œ ë°”ê¾¸ê² ë‹¤
     --GRADE_CODE NUMBER REFERENCES USER_GRADE(GRADE_CODE) ON DELETE SET NULL
     GRADE_CODE NUMBER REFERENCES USER_GRADE(GRADE_CODE) ON DELETE CASCADE
 );
@@ -204,20 +204,20 @@ DROP TABLE USER_FOREIGN_KEY;
 
 SELECT * FROM USER_FOREIGN_KEY;
 
--- USER_FOREIGN_KEY¿¡ ÀÖ´Â GRADE_CODE´Â USER_GRADEÀÇ GRADE_CODE°¡ °¡Áö°íÀÖ´Â 10, 20, 30¸¸ ³Ö¾î¾ß ÇÑ´Ù
--- 10, 20, 30 ¿ÜÀÇ °ªÀÎ 40Àº ÀÔ·Â ºÒ°¡´É!
+-- USER_FOREIGN_KEYì— ìžˆëŠ” GRADE_CODEëŠ” USER_GRADEì˜ GRADE_CODEê°€ ê°€ì§€ê³ ìžˆëŠ” 10, 20, 30ë§Œ ë„£ì–´ì•¼ í•œë‹¤
+-- 10, 20, 30 ì™¸ì˜ ê°’ì¸ 40ì€ ìž…ë ¥ ë¶ˆê°€ëŠ¥!
 INSERT INTO USER_FOREIGN_KEY
-VALUES(1, 'khuser01', 'pw01', 'ÀÏ¿ëÀÚ', 'M', '01012345678', 'khuser01@test.com', DEFAULT, 10);
+VALUES(1, 'khuser01', 'pw01', 'ì¼ìš©ìž', 'M', '01012345678', 'khuser01@test.com', DEFAULT, 10);
 INSERT INTO USER_FOREIGN_KEY
-VALUES(2, 'khuser02', 'pw02', 'ÀÌ¿ëÀÚ', 'M', '01012345678', 'khuser02@test.com', DEFAULT, 20);
+VALUES(2, 'khuser02', 'pw02', 'ì´ìš©ìž', 'M', '01012345678', 'khuser02@test.com', DEFAULT, 20);
 INSERT INTO USER_FOREIGN_KEY
-VALUES(3, 'khuser03', 'pw03', '»ï¿ëÀÚ', 'M', '01012345678', 'khuser03@test.com', DEFAULT, 30);
+VALUES(3, 'khuser03', 'pw03', 'ì‚¼ìš©ìž', 'M', '01012345678', 'khuser03@test.com', DEFAULT, 30);
 INSERT INTO USER_FOREIGN_KEY
-VALUES(4, 'khuser04', 'pw04', '»ç¿ëÀÚ', 'M', '01012345678', 'khuser04@test.com', DEFAULT, 40);
+VALUES(4, 'khuser04', 'pw04', 'ì‚¬ìš©ìž', 'M', '01012345678', 'khuser04@test.com', DEFAULT, 40);
 
 DELETE FROM USER_GRADE WHERE GRADE_CODE = 40;
 
-INSERT INTO USER_GRADE VALUES(40, 'VIP È¸¿ø');
+INSERT INTO USER_GRADE VALUES(40, 'VIP íšŒì›');
 
 
 
@@ -226,15 +226,15 @@ CREATE TABLE GRADE_POINT(
     GRADE_POINT NUMBER PRIMARY KEY,
     GRADE_NAME VARCHAR2(30) NOT NULL
 );
-INSERT INTO USER_POINT VALUES(10, 'ÀÏ¹Ýµî±Þ');
+INSERT INTO USER_POINT VALUES(10, 'ì¼ë°˜ë“±ê¸‰');
 
 
 
 ---------------------------------------------------------------------------------------------
 
 
--- Å×ÀÌºí¸í : SHOP_MEMBER
--- ÀúÀåÇØ¾ßÇÒ µ¥ÀÌÅÍ : 1, khuser01, pass01, ÀÏ¿ëÀÚ, M, 01012345678, khuser01@test.com
+-- í…Œì´ë¸”ëª… : SHOP_MEMBER
+-- ì €ìž¥í•´ì•¼í•  ë°ì´í„° : 1, khuser01, pass01, ì¼ìš©ìž, M, 01012345678, khuser01@test.com
 
 CREATE TABLE SHOP_MEMBER(
     USER_NO NUMBER PRIMARY KEY,
@@ -247,46 +247,46 @@ CREATE TABLE SHOP_MEMBER(
 );
 
 INSERT INTO SHOP_MEMBER
-VALUES(1, 'khuser01', 'pass01', 'ÀÏ¿ëÀÚ', 'M', '01012345678', 'khuser01@test.com');
+VALUES(1, 'khuser01', 'pass01', 'ì¼ìš©ìž', 'M', '01012345678', 'khuser01@test.com');
 INSERT INTO SHOP_MEMBER
-VALUES(2, 'khuser02', 'pass02', 'ÀÌ¿ëÀÚ', 'M', '01012345678', 'khuser02@test.com');
+VALUES(2, 'khuser02', 'pass02', 'ì´ìš©ìž', 'M', '01012345678', 'khuser02@test.com');
 
 SELECT * FROM SHOP_MEMBER;
 COMMIT;
 
 
 
--- Å×ÀÌºí¸í : SHOP_BUY
--- ÀúÀåÇØ¾ßÇÒ µ¥ÀÌÅÍ : 1, khuser01, ³ó±¸È­, 24/06/14
+-- í…Œì´ë¸”ëª… : SHOP_BUY
+-- ì €ìž¥í•´ì•¼í•  ë°ì´í„° : 1, khuser01, ë†êµ¬í™”, 24/06/14
 
 CREATE TABLE SHOP_BUY(
     BUY_NO NUMBER PRIMARY KEY,
-    --USER_ID VARCHAR2(20) REFERENCES SHOP_MEMBER(USER_ID) ON DELETE CASCADE NOT NULL, -- USER_ID ÇÊµå¿¡ NULLÀ» ³ÖÀ» ¼ö ¾ø°í ÂüÁ¶°ª »èÁ¦ ½Ã ÇØ´ç Æ©ÇÃ »èÁ¦
-    USER_ID VARCHAR2(20) REFERENCES SHOP_MEMBER(USER_ID) ON DELETE SET NULL, -- ÂüÁ¶°ª »èÁ¦ ½Ã USER_ID ÇÊµå¸¦ NULL·Î º¯°æ
+    --USER_ID VARCHAR2(20) REFERENCES SHOP_MEMBER(USER_ID) ON DELETE CASCADE NOT NULL, -- USER_ID í•„ë“œì— NULLì„ ë„£ì„ ìˆ˜ ì—†ê³  ì°¸ì¡°ê°’ ì‚­ì œ ì‹œ í•´ë‹¹ íŠœí”Œ ì‚­ì œ
+    USER_ID VARCHAR2(20) REFERENCES SHOP_MEMBER(USER_ID) ON DELETE SET NULL, -- ì°¸ì¡°ê°’ ì‚­ì œ ì‹œ USER_ID í•„ë“œë¥¼ NULLë¡œ ë³€ê²½
     PRODUCT_NAME VARCHAR2(30) NOT NULL,
     REG_DATE DATE DEFAULT SYSDATE
 );
--- SHOP_BUYÀÇ USER_ID´Â SHOT_MEMBERÀÇ USER_ID°¡ °¡Áö°í ÀÖ´Â
--- khuser01, khuser02 µî... ¸¸ ³ÖÀ» ¼ö ÀÖ´Ù
+-- SHOP_BUYì˜ USER_IDëŠ” SHOT_MEMBERì˜ USER_IDê°€ ê°€ì§€ê³  ìžˆëŠ”
+-- khuser01, khuser02 ë“±... ë§Œ ë„£ì„ ìˆ˜ ìžˆë‹¤
 DROP TABLE SHOP_BUY;
 
 SELECT * FROM SHOP_BUY;
 
 INSERT INTO SHOP_BUY
-VALUES(1, 'khuser01', '³ó±¸È­', DEFAULT);
+VALUES(1, 'khuser01', 'ë†êµ¬í™”', DEFAULT);
 INSERT INTO SHOP_BUY
-VALUES(2, 'khuser02', '³ó±¸È­', DEFAULT);
+VALUES(2, 'khuser02', 'ë†êµ¬í™”', DEFAULT);
 
 COMMIT;
 
 
 
--- ¿Ü·¡Å° FOREIGN KEY
--- ÀÚ½ÄÅ×ÀÌºíÀÌ ºÎ¸ð Å×ÀÌºíÀÌ °¡Áö°í ÀÖ´Â ÄÃ·³ÀÇ ÇÊµå°ªÀ¸·Î¸¸ INSERTÇÏµµ·Ï ÇÏ´Â °Í
--- ÂüÁ¶ ¹«°á¼ºÀ» º¸ÀåÇÏ´Â Á¦¾àÁ¶°ÇÀÓ
--- ÄÃ·³ ·¹º§ : REFERENCES ${ºÎ¸ðÅ×ÀÌºí}(${ÄÃ·³¸í}) »èÁ¦ ¿É¼Ç(ON DELETE SET NULL, ON DELETE CASECADE)
+-- ì™¸ëž˜í‚¤ FOREIGN KEY
+-- ìžì‹í…Œì´ë¸”ì´ ë¶€ëª¨ í…Œì´ë¸”ì´ ê°€ì§€ê³  ìžˆëŠ” ì»¬ëŸ¼ì˜ í•„ë“œê°’ìœ¼ë¡œë§Œ INSERTí•˜ë„ë¡ í•˜ëŠ” ê²ƒ
+-- ì°¸ì¡° ë¬´ê²°ì„±ì„ ë³´ìž¥í•˜ëŠ” ì œì•½ì¡°ê±´ìž„
+-- ì»¬ëŸ¼ ë ˆë²¨ : REFERENCES ${ë¶€ëª¨í…Œì´ë¸”}(${ì»¬ëŸ¼ëª…}) ì‚­ì œ ì˜µì…˜(ON DELETE SET NULL, ON DELETE CASECADE)
 
--- ¿Ü·¡Å° »èÁ¦¿É¼Ç (ºÎ¸ðÅ×ÀÌºíÀÇ µ¥ÀÌÅÍ »èÁ¦ ½Ãµµ½Ã ÀÚ½Ä Å×ÀÌºíÀÇ µ¥ÀÌÅÍ¸¦ Ã³¸®ÇÏ´Â ¹æ¹ý)
--- 1. ±âº» ¿É¼Ç ON DELETE RESTRICTED
--- 2. ¿¬°üµÈ ¸ðµç °Í »èÁ¦ ¿É¼Ç : ON DELETE CASCADE
--- 3. NULL·Î ¸¸µå´Â »èÁ¦ ¿É¼Ç : ON DELETE SET NULL
+-- ì™¸ëž˜í‚¤ ì‚­ì œì˜µì…˜ (ë¶€ëª¨í…Œì´ë¸”ì˜ ë°ì´í„° ì‚­ì œ ì‹œë„ì‹œ ìžì‹ í…Œì´ë¸”ì˜ ë°ì´í„°ë¥¼ ì²˜ë¦¬í•˜ëŠ” ë°©ë²•)
+-- 1. ê¸°ë³¸ ì˜µì…˜ ON DELETE RESTRICTED
+-- 2. ì—°ê´€ëœ ëª¨ë“  ê²ƒ ì‚­ì œ ì˜µì…˜ : ON DELETE CASCADE
+-- 3. NULLë¡œ ë§Œë“œëŠ” ì‚­ì œ ì˜µì…˜ : ON DELETE SET NULL

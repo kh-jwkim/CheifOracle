@@ -1,23 +1,23 @@
 -- DDL
 COMMIT;
--- Data Definition Language µ¥ÀÌÅÍ Á¤ÀÇ¾î
--- ¿À¶óÅ¬ÀÇ °´Ã¼¸¦ »ý¼º, ¼öÁ¤, »èÁ¦ÇÏ´Â ¸í·É¾î, ¸í·É¾îÀÇ Á¾·ù·Î´Â
+-- Data Definition Language ë°ì´í„° ì •ì˜ì–´
+-- ì˜¤ë¼í´ì˜ ê°ì²´ë¥¼ ìƒì„±, ìˆ˜ì •, ì‚­ì œí•˜ëŠ” ëª…ë ¹ì–´, ëª…ë ¹ì–´ì˜ ì¢…ë¥˜ë¡œëŠ”
 -- CREATE, ALTER, DROP, TRUNCATE, ...
 
--- COMMENT ÀÛ¼ºÀº ¿©·¯¹ø ÇØµµ µ¤¾î¾º¿öÁö´Â µ¿ÀÛÀ» ÇÏ°í µüÈ÷ ¿¡·¯´Â ¾È³²
-COMMENT ON COLUMN EMPLOYEE.NAME IS '»ç¿ø¸í';
-COMMENT ON COLUMN EMPLOYEE.T_CODE IS 'Á÷±ÞÄÚµå';
-COMMENT ON COLUMN EMPLOYEE.D_CODE IS 'ºÎ¼­ÄÚµå';
-COMMENT ON COLUMN EMPLOYEE.AGE IS '³ªÀÌ';
+-- COMMENT ìž‘ì„±ì€ ì—¬ëŸ¬ë²ˆ í•´ë„ ë®ì–´ì”Œì›Œì§€ëŠ” ë™ìž‘ì„ í•˜ê³  ë”±ížˆ ì—ëŸ¬ëŠ” ì•ˆë‚¨
+COMMENT ON COLUMN EMPLOYEE.NAME IS 'ì‚¬ì›ëª…';
+COMMENT ON COLUMN EMPLOYEE.T_CODE IS 'ì§ê¸‰ì½”ë“œ';
+COMMENT ON COLUMN EMPLOYEE.D_CODE IS 'ë¶€ì„œì½”ë“œ';
+COMMENT ON COLUMN EMPLOYEE.AGE IS 'ë‚˜ì´';
 
--- COMMENT »èÁ¦´Â ±×³É NULL·Î´Â ¾ÈµÇ°í ºñ¾îÀÖ´Â ¹®ÀÚ¿­('')·Î ÇØ¾ßÇÏ´Âµí
+-- COMMENT ì‚­ì œëŠ” ê·¸ëƒ¥ NULLë¡œëŠ” ì•ˆë˜ê³  ë¹„ì–´ìžˆëŠ” ë¬¸ìžì—´('')ë¡œ í•´ì•¼í•˜ëŠ”ë“¯
 COMMENT ON COLUMN EMPLOYEE.NAME IS '';
 COMMENT ON COLUMN EMPLOYEE.T_CODE IS '';
 COMMENT ON COLUMN EMPLOYEE.D_CODE IS '';
 COMMENT ON COLUMN EMPLOYEE.AGE IS '';
 
 
--- Å×ÀÌºí ±â¼ú¼­(Ç¥ ÇüÅÂ)¸¦ º¸°í ±×´ë·Î DB ±¸¼ºÀ» ÇÒ ¼ö ÀÖ´À³Ä°¡ Áß¿ä!!
+-- í…Œì´ë¸” ê¸°ìˆ ì„œ(í‘œ í˜•íƒœ)ë¥¼ ë³´ê³  ê·¸ëŒ€ë¡œ DB êµ¬ì„±ì„ í•  ìˆ˜ ìžˆëŠëƒê°€ ì¤‘ìš”!!
 DESC EMPLOYEE;
 
 DESC USER_UNIQUE;
@@ -27,9 +27,9 @@ DESC USER_PRIMARY_KEY;
 
 
 
--- °èÁ¤À» ¸¸µé¾îÁÖ¼¼¿ä
--- Á¢¼ÓÁ¤º¸(ID/PW) : KH / KH
--- Á¢¼Ó±ÇÇÑ, »ý¼º±ÇÇÑ ºÎ¿©
+-- ê³„ì •ì„ ë§Œë“¤ì–´ì£¼ì„¸ìš”
+-- ì ‘ì†ì •ë³´(ID/PW) : KH / KH
+-- ì ‘ì†ê¶Œí•œ, ìƒì„±ê¶Œí•œ ë¶€ì—¬
 
 CREATE USER KH IDENTIFIED BY KH;
 GRANT CONNECT, RESOURCE TO KH;

@@ -6,49 +6,49 @@ CREATE TABLE EMPLOYEE(
     D_CODE VARCHAR2(10),
     AGE NUMBER
 );
--- 1. ÄÃ·³ÀÇ µ¥ÀÌÅÍ Å¸ÀÔ¾øÀÌ Å×ÀÌºí »ý¼ºÇÏ¿© ¿À·ù³²
--- -> µ¥ÀÌÅÍÅ¸ÀÔ ÀÛ¼º
--- 2. ±ÇÇÑµµ ¾øÀÌ Å×ÀÌºíÀ» »ý¼ºÇÏ¿© ¿À·ù³²
--- -> System_°èÁ¤ ¿¡¼­ RESOURCE ±ÇÇÑ ºÎ¿©
--- 3. Á¢¼ÓÇØÁ¦ ÈÄ Á¢¼Ó, »õ·Î¿î ¿öÅ©½ÃÆ® ¸»°í ±âÁ¸ ¿öÅ©½ÃÆ® ¿ìÃø »ó´Ü¿¡¼­ KHUSER01_°èÁ¤ ¼±ÅÃÇÏ¿©
--- ¸í·É¾î Àç½ÇÇà
+-- 1. ì»¬ëŸ¼ì˜ ë°ì´í„° íƒ€ìž…ì—†ì´ í…Œì´ë¸” ìƒì„±í•˜ì—¬ ì˜¤ë¥˜ë‚¨
+-- -> ë°ì´í„°íƒ€ìž… ìž‘ì„±
+-- 2. ê¶Œí•œë„ ì—†ì´ í…Œì´ë¸”ì„ ìƒì„±í•˜ì—¬ ì˜¤ë¥˜ë‚¨
+-- -> System_ê³„ì • ì—ì„œ RESOURCE ê¶Œí•œ ë¶€ì—¬
+-- 3. ì ‘ì†í•´ì œ í›„ ì ‘ì†, ìƒˆë¡œìš´ ì›Œí¬ì‹œíŠ¸ ë§ê³  ê¸°ì¡´ ì›Œí¬ì‹œíŠ¸ ìš°ì¸¡ ìƒë‹¨ì—ì„œ KHUSER01_ê³„ì • ì„ íƒí•˜ì—¬
+-- ëª…ë ¹ì–´ ìž¬ì‹¤í–‰
 
--- Å×ÀÌºí¿¡ µ¥ÀÌÅÍ »ðÀÔ
+-- í…Œì´ë¸”ì— ë°ì´í„° ì‚½ìž…
 INSERT INTO EMPLOYEE(NAME, T_CODE, D_CODE, AGE)
-VALUES('ÀÏ¿ëÀÚ', 'T1', 'D1', 33);
+VALUES('ì¼ìš©ìž', 'T1', 'D1', 33);
 INSERT INTO EMPLOYEE(NAME, T_CODE, D_CODE, AGE)
-VALUES('ÀÌ¿ëÀÚ', 'T2', 'D1', 44);
+VALUES('ì´ìš©ìž', 'T2', 'D1', 44);
 INSERT INTO EMPLOYEE(NAME, T_CODE, D_CODE, AGE)
-VALUES('»ï¿ëÀÚ', 'T1', 'D2', 32);
+VALUES('ì‚¼ìš©ìž', 'T1', 'D2', 32);
 INSERT INTO EMPLOYEE(NAME, T_CODE, D_CODE, AGE)
-VALUES('ÀÏ¿ëÀÚ', 'T2', 'D1', 43);
+VALUES('ì¼ìš©ìž', 'T2', 'D1', 43);
 
--- Å×ÀÌºíÀÇ µ¥ÀÌÅÍ »èÁ¦
-DROP TABLE EMPLOYEE;    --Å×ÀÌºí ÀÚÃ¼¸¦ »èÁ¦
+-- í…Œì´ë¸”ì˜ ë°ì´í„° ì‚­ì œ
+DROP TABLE EMPLOYEE;    --í…Œì´ë¸” ìžì²´ë¥¼ ì‚­ì œ
 
-DELETE FROM EMPLOYEE;   --Å×ÀÌºíÀÇ µ¥ÀÌÅÍ ÀüÃ¼ »èÁ¦
+DELETE FROM EMPLOYEE;   --í…Œì´ë¸”ì˜ ë°ì´í„° ì „ì²´ ì‚­ì œ
 
-DELETE FROM EMPLOYEE WHERE NAME = 'ÀÏ¿ëÀÚ';    --COLUMN NAMEÀÇ °ªÀÌ 'ÀÏ¿ëÀÚ'ÀÎ ROW »èÁ¦
+DELETE FROM EMPLOYEE WHERE NAME = 'ì¼ìš©ìž';    --COLUMN NAMEì˜ ê°’ì´ 'ì¼ìš©ìž'ì¸ ROW ì‚­ì œ
 
-DELETE FROM EMPLOYEE WHERE NAME = 'ÀÏ¿ëÀÚ' AND T_CODE = 'T2';  --COLUMN NAMEÀÇ °ªÀÌ 'ÀÏ¿ëÀÚ' ÀÌ¸é¼­ COLUMN T_CODEÀÇ °ªÀÌ 'T2'ÀÎ ROW »èÁ¦
+DELETE FROM EMPLOYEE WHERE NAME = 'ì¼ìš©ìž' AND T_CODE = 'T2';  --COLUMN NAMEì˜ ê°’ì´ 'ì¼ìš©ìž' ì´ë©´ì„œ COLUMN T_CODEì˜ ê°’ì´ 'T2'ì¸ ROW ì‚­ì œ
 
-UPDATE EMPLOYEE SET T_CODE = 'T3' WHERE NAME = 'ÀÏ¿ëÀÚ';   --COLUMN NAMEÀÇ °ªÀÌ 'ÀÏ¿ëÀÚ' ÀÎ ROWÀÇ COLUMN T_CODEÀÇ °ªÀ» 'T3'À¸·Î º¯°æ
+UPDATE EMPLOYEE SET T_CODE = 'T3' WHERE NAME = 'ì¼ìš©ìž';   --COLUMN NAMEì˜ ê°’ì´ 'ì¼ìš©ìž' ì¸ ROWì˜ COLUMN T_CODEì˜ ê°’ì„ 'T3'ìœ¼ë¡œ ë³€ê²½
 
-SELECT NAME, T_CODE, D_CODE, AGE FROM EMPLOYEE  -- NAME, T_CODE, D_CODE, AGE ÄÃ·³ÀÇ °ªÀ» EMPLOYEE Å×ÀÌºí¿¡¼­ Á¶È¸
-WHERE NAME = 'ÀÏ¿ëÀÚ';                           -- NAME ÄÃ·³ÀÇ °ªÀÌ 'ÀÏ¿ëÀÚ'ÀÎ °æ¿ì
+SELECT NAME, T_CODE, D_CODE, AGE FROM EMPLOYEE  -- NAME, T_CODE, D_CODE, AGE ì»¬ëŸ¼ì˜ ê°’ì„ EMPLOYEE í…Œì´ë¸”ì—ì„œ ì¡°íšŒ
+WHERE NAME = 'ì¼ìš©ìž';                           -- NAME ì»¬ëŸ¼ì˜ ê°’ì´ 'ì¼ìš©ìž'ì¸ ê²½ìš°
 
-SELECT * FROM EMPLOYEE; --EMPLOYEE Å×ÀÌºí ÀüÃ¼ ROW(WHERE°¡ ¾ø±â ¶§¹®), ÀüÃ¼ COLUMN(SELECT * ¶§¹®)¸¦ Á¶È¸
+SELECT * FROM EMPLOYEE; --EMPLOYEE í…Œì´ë¸” ì „ì²´ ROW(WHEREê°€ ì—†ê¸° ë•Œë¬¸), ì „ì²´ COLUMN(SELECT * ë•Œë¬¸)ë¥¼ ì¡°íšŒ
 
 
 
--- ÀÌ¸§ÀÌ STUDENT_TBLÀÎ Å×ÀÌºíÀ» ¸¸µå¼¼¿ä
--- ÀÌ¸§, ³ªÀÌ, ÇÐ³â, ÁÖ¼Ò¸¦ ÀúÀåÇÒ ¼ö ÀÖµµ·Ï ÇÏ¸ç
--- ÀÏ¿ëÀÚ, 21, 1, ¼­¿ï½Ã Áß±¸ ¸¦ ÀúÀåÇØÁÖ¼¼¿ä
--- ÀÏ¿ëÀÚ¸¦ »ç¿ëÀÚ·Î ¹Ù²ãÁÖ¼¼¿ä
--- µ¥ÀÌÅÍ¸¦ »èÁ¦ÇÏ´Â Äõ¸®¹®À» ÀÛ¼ºÇÏ°í »èÁ¦¸¦ È®ÀÎÇÏ½Ã°í
--- Å×ÀÌºíÀ» »èÁ¦ÇÏ´Â Äõ¸®¹®À» ÀÛ¼ºÇÏ¿© Å×ÀÌºíÀÌ »ç¶óÁø °ÍÀ» È®ÀÎÇÏ¼¼¿ä.
+-- ì´ë¦„ì´ STUDENT_TBLì¸ í…Œì´ë¸”ì„ ë§Œë“œì„¸ìš”
+-- ì´ë¦„, ë‚˜ì´, í•™ë…„, ì£¼ì†Œë¥¼ ì €ìž¥í•  ìˆ˜ ìžˆë„ë¡ í•˜ë©°
+-- ì¼ìš©ìž, 21, 1, ì„œìš¸ì‹œ ì¤‘êµ¬ ë¥¼ ì €ìž¥í•´ì£¼ì„¸ìš”
+-- ì¼ìš©ìžë¥¼ ì‚¬ìš©ìžë¡œ ë°”ê¿”ì£¼ì„¸ìš”
+-- ë°ì´í„°ë¥¼ ì‚­ì œí•˜ëŠ” ì¿¼ë¦¬ë¬¸ì„ ìž‘ì„±í•˜ê³  ì‚­ì œë¥¼ í™•ì¸í•˜ì‹œê³ 
+-- í…Œì´ë¸”ì„ ì‚­ì œí•˜ëŠ” ì¿¼ë¦¬ë¬¸ì„ ìž‘ì„±í•˜ì—¬ í…Œì´ë¸”ì´ ì‚¬ë¼ì§„ ê²ƒì„ í™•ì¸í•˜ì„¸ìš”.
 
--- ÀÌ¸§ÀÌ STUDENT_TBLÀÌ¸é¼­ ÀÌ¸§, ³ªÀÌ, ÇÐ³â, ÁÖ¼Ò¸¦ ÀúÀåÇÒ ¼ö ÀÖ´Â Å×ÀÌºí ÀÛ¼º
+-- ì´ë¦„ì´ STUDENT_TBLì´ë©´ì„œ ì´ë¦„, ë‚˜ì´, í•™ë…„, ì£¼ì†Œë¥¼ ì €ìž¥í•  ìˆ˜ ìžˆëŠ” í…Œì´ë¸” ìž‘ì„±
 CREATE TABLE STUDENT_TBL(
     NAME VARCHAR2(10),
     AGE NUMBER,
@@ -56,50 +56,50 @@ CREATE TABLE STUDENT_TBL(
     ADDR VARCHAR2(20)
 );
 
--- ÀÏ¿ëÀÚ, 21, 1, ¼­¿ï½Ã Áß±¸ ¸¦ ÀúÀå
+-- ì¼ìš©ìž, 21, 1, ì„œìš¸ì‹œ ì¤‘êµ¬ ë¥¼ ì €ìž¥
 INSERT INTO STUDENT_TBL(NAME, AGE, GRADE, ADDR)
-VALUES('ÀÏ¿ëÀÚ', 21, 1, '¼­¿ï½Ã Áß±¸');
+VALUES('ì¼ìš©ìž', 21, 1, 'ì„œìš¸ì‹œ ì¤‘êµ¬');
 
--- º¯°æ»çÇ× ·Ñ¹é/È®Á¤
-ROLLBACK;   -- ±âÁ¸ COMMIT ÁöÁ¡À¸·Î µÇµ¹¸°´Ù
-COMMIT;     -- ÇöÀç »óÅÂ¸¦ ROLLBACK ÁöÁ¡À¸·Î ¼³Á¤
+-- ë³€ê²½ì‚¬í•­ ë¡¤ë°±/í™•ì •
+ROLLBACK;   -- ê¸°ì¡´ COMMIT ì§€ì ìœ¼ë¡œ ë˜ëŒë¦°ë‹¤
+COMMIT;     -- í˜„ìž¬ ìƒíƒœë¥¼ ROLLBACK ì§€ì ìœ¼ë¡œ ì„¤ì •
 
--- ÀÏ¿ëÀÚ¸¦ »ç¿ëÀÚ·Î º¯°æ
-UPDATE STUDENT_TBL SET NAME = '»ç¿ëÀÚ' WHERE NAME = 'ÀÏ¿ëÀÚ';
+-- ì¼ìš©ìžë¥¼ ì‚¬ìš©ìžë¡œ ë³€ê²½
+UPDATE STUDENT_TBL SET NAME = 'ì‚¬ìš©ìž' WHERE NAME = 'ì¼ìš©ìž';
 
--- µ¥ÀÌÅÍ¸¦ »èÁ¦ÇÏ´Â Äõ¸®¹®À» ÀÛ¼ºÇÏ°í »èÁ¦
-DELETE STUDENT_TBL WHERE NAME = '»ç¿ëÀÚ';
+-- ë°ì´í„°ë¥¼ ì‚­ì œí•˜ëŠ” ì¿¼ë¦¬ë¬¸ì„ ìž‘ì„±í•˜ê³  ì‚­ì œ
+DELETE STUDENT_TBL WHERE NAME = 'ì‚¬ìš©ìž';
 
--- µ¥ÀÌÅÍ »èÁ¦¸¦ È®ÀÎ
+-- ë°ì´í„° ì‚­ì œë¥¼ í™•ì¸
 SELECT * FROM STUDENT_TBL;
 
--- Å×ÀÌºíÀ» »èÁ¦ÇÏ´Â Äõ¸®¹®À» ÀÛ¼º
+-- í…Œì´ë¸”ì„ ì‚­ì œí•˜ëŠ” ì¿¼ë¦¬ë¬¸ì„ ìž‘ì„±
 DROP TABLE STUDENT_TBL;
 
--- Å×ÀÌºíÀÌ »ç¶óÁø °ÍÀ» È®ÀÎ
+-- í…Œì´ë¸”ì´ ì‚¬ë¼ì§„ ê²ƒì„ í™•ì¸
 SELECT * FROM STUDENT_TBL;
 
 
 
--- ¾ÆÀÌµð°¡ KHUSER02 ºñ¹Ð¹øÈ£°¡ KHUSER02ÀÎ °èÁ¤À» »ý¼ºÇÏ°í
--- Á¢¼ÓÀÌ µÇµµ·Ï ÇÏ°í Å×ÀÌºíµµ ¸¸µé ¼ö ÀÖµµ·Ï ÇÏ¼¼¿ä
+-- ì•„ì´ë””ê°€ KHUSER02 ë¹„ë°€ë²ˆí˜¸ê°€ KHUSER02ì¸ ê³„ì •ì„ ìƒì„±í•˜ê³ 
+-- ì ‘ì†ì´ ë˜ë„ë¡ í•˜ê³  í…Œì´ë¸”ë„ ë§Œë“¤ ìˆ˜ ìžˆë„ë¡ í•˜ì„¸ìš”
 
--- °èÁ¤ Á¤º¸ ¼³Á¤ÀÌ °¡´ÉÇÑ DCL(Data Control Language) ±ÇÇÑÀÌ ÀÖ´Â system °èÁ¤À¸·Î º¯°æ
--- system (RED) -> SQL Developer È­¸é ¿ìÃø »ó´ÜÀÇ °èÁ¤ ¼³Á¤
+-- ê³„ì • ì •ë³´ ì„¤ì •ì´ ê°€ëŠ¥í•œ DCL(Data Control Language) ê¶Œí•œì´ ìžˆëŠ” system ê³„ì •ìœ¼ë¡œ ë³€ê²½
+-- system (RED) -> SQL Developer í™”ë©´ ìš°ì¸¡ ìƒë‹¨ì˜ ê³„ì • ì„¤ì •
 
--- ¾ÆÀÌµð°¡ KHUSER02 ºñ¹Ð¹øÈ£°¡ KHUSER02ÀÎ °èÁ¤À» »ý¼º
---ÀÌ°Å Àß ¾È¿Ü¿öÁö´Ï±î ½É½ÉÇÒ¶§¸¶´Ù »ý¼º/»èÁ¦ ÇÏ¸é¼­ ¿¬½ÀÇØ¾ß ÇÒ µí?
+-- ì•„ì´ë””ê°€ KHUSER02 ë¹„ë°€ë²ˆí˜¸ê°€ KHUSER02ì¸ ê³„ì •ì„ ìƒì„±
+--ì´ê±° ìž˜ ì•ˆì™¸ì›Œì§€ë‹ˆê¹Œ ì‹¬ì‹¬í• ë•Œë§ˆë‹¤ ìƒì„±/ì‚­ì œ í•˜ë©´ì„œ ì—°ìŠµí•´ì•¼ í•  ë“¯?
 CREATE USER KHUSER02 IDENTIFIED BY KHUSER02;
 
--- Á¢¼ÓÀÌ µÇµµ·Ï ¼³Á¤
+-- ì ‘ì†ì´ ë˜ë„ë¡ ì„¤ì •
 GRANT CONNECT TO KHUSER02;
 
--- Å×ÀÌºíµµ ¸¸µé ¼ö ÀÖµµ·Ï ¼³Á¤
+-- í…Œì´ë¸”ë„ ë§Œë“¤ ìˆ˜ ìžˆë„ë¡ ì„¤ì •
 GRANT RESOURCE TO KHUSER02;
 
 SHOW USER;
 
---´Ù¸¥ À¯Àú ±ÇÇÑÀ¸·Î Ä¿¸Çµå ÀÔ·ÂÀÌ µÇ´ÂÁö º¸°í½Í¾ú´Âµ¥ ¾ÈµÇ´Âµí...
+--ë‹¤ë¥¸ ìœ ì € ê¶Œí•œìœ¼ë¡œ ì»¤ë§¨ë“œ ìž…ë ¥ì´ ë˜ëŠ”ì§€ ë³´ê³ ì‹¶ì—ˆëŠ”ë° ì•ˆë˜ëŠ”ë“¯...
 --CONN KHUSER02
 --SHOW USER;
 
