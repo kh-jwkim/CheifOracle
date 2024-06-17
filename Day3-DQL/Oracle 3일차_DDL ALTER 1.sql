@@ -1,4 +1,4 @@
--- 3일차
+-- 3일차 
 -- DDL, Data Definition Language 데이터 정의어
 -- CREATE, ALTER, DROP           DDL의 종류
 -- CREATE USER, CREATE TABLE, ...예시

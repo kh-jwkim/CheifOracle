@@ -1,6 +1,6 @@
 DESC EMPLOYEE;
 
--- 데이터를 조회한 결과를 Result Set 이라고 함
+-- 데이터를 조회한 결과를 Result Set 이라고 함 
 -- ResultSet : SELECT 구문에 의해 반환된 행들의 집합
 -- ResultSet은 0개 이상의 행이 포함될 수 있음.
 -- ResultSet은 특정한 기준에 의해 정렬될 수 있음
