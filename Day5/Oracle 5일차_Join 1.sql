@@ -1,0 +1,184 @@
+-- 5일차 JOIN
+
+-- @함수 종합실습 - 형변환 함수, 기타 함수
+--10. 직원명, 직급코드, 연봉(원) 조회
+--  단, 연봉은 ￦57,000,000 으로 표시되게 함
+--     연봉은 보너스포인트가 적용된 1년치 급여임
+SELECT EMP_NAME "직원명", JOB_CODE "직급코드", TO_CHAR((SALARY*12)+(SALARY*NVL(BONUS,0)), 'L999,999,999') "연봉(원)"
+FROM EMPLOYEE;
+
+DESC EMPLOYEE;
+--11. 사원명과, 부서명을 출력하세요.
+--   부서코드가 D5이면 총무부, D6이면 기획부, D9이면 영업부로 처리하시오.(case 사용)
+--   단, 부서코드가 D5, D6, D9 인 직원의 정보만 조회하고, 부서코드 기준으로 오름차순 정렬함.
+SELECT 
+EMP_NAME "사원명", 
+CASE
+ WHEN DEPT_CODE = 'D5' THEN '총무부'
+ WHEN DEPT_CODE = 'D6' THEN '기획부'
+ WHEN DEPT_CODE = 'D9' THEN '영업부'
+END "부서명"
+FROM EMPLOYEE
+WHERE DEPT_CODE IN ('D5','D6','D9')
+ORDER BY DEPT_CODE ASC;
+
+--12. 재직중인 직원과 퇴사한 직원의 수를 조회하시오.
+SELECT DECODE(ENT_YN, 'N', '재직', 'Y', '퇴직') "재직여부", COUNT(*) "인원"
+FROM EMPLOYEE
+GROUP BY ENT_YN;
+
+
+DESC DEPARTMENT;
+SELECT * FROM DEPARTMENT;
+-- JOIN으로도 가능, JOIN으로 출력해보기
+SELECT
+EMP_NAME "사원명",
+DEPT_TITLE
+FROM EMPLOYEE
+JOIN DEPARTMENT ON DEPT_CODE = DEPT_ID
+WHERE DEPT_CODE IN ('D5','D6','D9')
+ORDER BY DEPT_CODE ASC;
+
+
+
+
+
+
+
+-- @JOIN 종합실습
+--1. 주민번호가 1970년대 생이면서 성별이 여자이고, 
+-- 성이 전씨인 직원들의 사원명, 주민번호, 부서명, 직급명을 조회하시오.
+SELECT EMP_NAME "사원명",
+EMP_NO "주민번호",
+DEPT_TITLE "부서명",
+JOB_NAME "직급명"
+FROM EMPLOYEE
+JOIN DEPARTMENT ON DEPT_CODE = DEPT_ID
+JOIN JOB USING(JOB_CODE)
+WHERE EMP_NAME LIKE '전%' AND EMP_NO LIKE '7_____-2%';
+
+
+--2. 이름에 '형'자가 들어가는 직원들의 사번, 사원명, 부서명을 조회하시오.
+SELECT EMP_ID "사번", EMP_NAME "사원명", DEPT_TITLE "부서명"
+FROM EMPLOYEE
+JOIN DEPARTMENT ON DEPT_CODE = DEPT_ID
+WHERE EMP_NAME LIKE '%형%';
+
+DESC JOB;
+DESC DEPARTMENT;
+DESC EMPLOYEE;
+DESC LOCATION;
+
+--3. 해외영업부에 근무하는 사원명, 직급명, 부서코드, 부서명을 조회하시오.
+SELECT EMP_NAME "사원명", 
+JOB_NAME "직급명", 
+DEPT_CODE "부서코드", 
+DEPT_TITLE "부서명"
+FROM EMPLOYEE
+JOIN JOB USING(JOB_CODE)
+JOIN DEPARTMENT ON DEPT_CODE = DEPT_ID
+WHERE DEPT_TITLE LIKE '해외영업%';
+
+--4. 보너스포인트를 받는 직원들의 사원명, 보너스포인트, 부서명, 근무지역명을 조회하시오.
+SELECT EMP_NAME "사원명", BONUS "보너스포인트", DEPT_TITLE "부서명", LOCAL_NAME "근무지역명"
+FROM EMPLOYEE
+JOIN DEPARTMENT ON DEPT_CODE = DEPT_ID
+JOIN LOCATION ON LOCATION_ID = LOCAL_CODE
+WHERE BONUS IS NOT NULL;
+
+--5. 부서코드가 D2인 직원들의 사원명, 직급명, 부서명, 근무지역명을 조회하시오.
+SELECT EMP_NAME "사원명", JOB_NAME "직급명", DEPT_TITLE "부서명", LOCAL_NAME "근무지역명"
+FROM EMPLOYEE
+JOIN JOB ON EMPLOYEE.JOB_CODE = JOB.JOB_CODE
+JOIN DEPARTMENT ON DEPT_CODE = DEPT_ID
+JOIN LOCATION ON LOCATION_ID = LOCAL_CODE
+WHERE DEPT_CODE LIKE 'D2';
+
+--6. 급여등급테이블의 최대급여(MAX_SAL)보다 많이 받는 직원들의 사원명, 직급명, 급여, 연봉을 조회하시오.
+-- (사원테이블과 급여등급테이블을 SAL_LEVEL컬럼기준으로 조인할 것)
+-- 데이터 없음!
+SELECT EMP_NAME "사원명", JOB_NAME "직급명", SALARY "급여", SALARY*12 "연봉", MAX_SAL "최대급여"
+FROM EMPLOYEE
+JOIN JOB USING(JOB_CODE)
+JOIN SAL_GRADE USING(SAL_LEVEL)
+WHERE SALARY > MAX_SAL;
+
+--7. 한국(KO)과 일본(JP)에 근무하는 직원들의 사원명, 부서명, 지역명, 국가명을 조회하시오.
+SELECT EMP_NAME "사원명", DEPT_TITLE "부서명", LOCAL_NAME "지역명", NATIONAL_NAME "국가명"
+FROM EMPLOYEE
+JOIN DEPARTMENT ON DEPT_CODE = DEPT_ID
+JOIN LOCATION ON LOCATION_ID = LOCAL_CODE
+JOIN NATIONAL USING(NATIONAL_CODE)
+WHERE NATIONAL_CODE IN ('KO','JP');
+
+--8. 보너스포인트가 없는 직원들 중에서 직급이 차장과 사원인 직원들의 사원명, 직급명, 급여를 조회하시오. 
+--단, join과 IN 사용할 것
+SELECT EMP_NAME "사원명", JOB_NAME "직급명", SALARY "급여"
+FROM EMPLOYEE
+JOIN JOB USING(JOB_CODE)
+WHERE JOB_NAME IN ('차장','사원') AND BONUS IS NULL;
+
+
+
+
+
+
+-- 1. JOIN의 종류
+-- 1.1 INNER JOIN : 교집합, 일반적으로 사용하는 조인
+-- 1.2 OUTER JOIN : 합집합, 모두 출력하는 조인
+-- ex) 사원명과 부서명을 출력하시오
+SELECT EMP_NAME, DEPT_TITLE
+FROM EMPLOYEE
+JOIN DEPARTMENT ON DEPT_CODE = DEPT_ID; -- 21개임, 2개가 빠짐
+
+SELECT EMP_NAME, DEPT_CODE
+FROM EMPLOYEE
+WHERE DEPT_CODE IS NULL; -- DEPT_CODE가 NULL인 경우에 INNER JOIN 시 제외됨
+
+SELECT COUNT(*) FROM EMPLOYEE;
+
+
+-- LEFT OUTER JOIN은 왼쪽 테이블이 가지고 있는 모든 데이터를 출력
+SELECT EMP_NAME, DEPT_CODE, DEPT_ID, DEPT_TITLE
+FROM EMPLOYEE
+LEFT OUTER JOIN DEPARTMENT ON DEPT_CODE = DEPT_ID; -- 23개임, 왼쪽에서 2개가 안빠짐 
+
+-- RIGHT OUTER JOIN은 오른쪽 테이블이 가지고 있는 모든 데이터를 출력
+SELECT EMP_NAME, DEPT_CODE, DEPT_ID, DEPT_TITLE
+FROM EMPLOYEE
+RIGHT OUTER JOIN DEPARTMENT ON DEPT_CODE = DEPT_ID; -- 24개임, 왼쪽에서 2개 빠지고 오른쪽에서 3개 추가 
+
+-- FULL OUTER JOIN은 오른쪽 테이블이 가지고 있는 모든 데이터를 출력
+SELECT EMP_NAME, DEPT_CODE, DEPT_ID, DEPT_TITLE
+FROM EMPLOYEE
+FULL OUTER JOIN DEPARTMENT ON DEPT_CODE = DEPT_ID; -- 26개!, 왼쪽에서 2개, 오른쪽에서 3개 전부 합쳐짐 
+
+
+
+-- Oracle 전용 구문으로 JOIN 구현
+-- 1. INNER JOIN
+SELECT EMP_NAME, DEPT_CODE, DEPT_ID, DEPT_TITLE
+FROM EMPLOYEE, DEPARTMENT
+WHERE DEPT_CODE = DEPT_ID;
+
+-- 2. LEFT OUTER JOIN
+SELECT EMP_NAME, DEPT_CODE, DEPT_ID, DEPT_TITLE
+FROM EMPLOYEE, DEPARTMENT
+WHERE DEPT_CODE = DEPT_ID(+);
+
+-- 3. RIGHT OUTER JOIN
+SELECT EMP_NAME, DEPT_CODE, DEPT_ID, DEPT_TITLE
+FROM EMPLOYEE, DEPARTMENT
+WHERE DEPT_CODE(+) = DEPT_ID;
+
+-- 4. FULL OUTER JOIN
+-- 존재하지 않음... 다음 에러 발생! ORA-01468: a predicate may reference only one outer-joined table
+SELECT EMP_NAME, DEPT_CODE, DEPT_ID, DEPT_TITLE
+FROM EMPLOYEE, DEPARTMENT
+WHERE DEPT_CODE(+) = DEPT_ID(+);
+
+
+
+
+
+
